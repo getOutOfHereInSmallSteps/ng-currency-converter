@@ -10,10 +10,23 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Currency Calculator';
 
-  currencies = ['currency1', 'currency2'];
+  currencies = ['usd', 'eur', 'uah'];
 
-  logger(val: any) {
-    console.log(val);
-    console.log(typeof val);
+  rates = {
+    usd: 0.5,
+    eur: 0.2,
+    uah: 1,
+  };
+
+  input1 = '';
+  input2 = '';
+
+  logger() {
+    console.log(this.input1);
+    console.log(this.input2);
+  }
+
+  convertCurrency() {
+    const baseRate = this.rates;
   }
 }
