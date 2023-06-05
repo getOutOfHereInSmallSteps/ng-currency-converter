@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ng-currency-converter';
+  title = 'Currency Calculator';
+
+  currencies = ['currency1', 'currency2'];
+
+  logger(val: any) {
+    console.log(val);
+    console.log(typeof val);
+  }
 }

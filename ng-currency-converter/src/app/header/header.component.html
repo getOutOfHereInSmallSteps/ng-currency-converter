@@ -2,7 +2,11 @@
   <h1 class="main-heading">Currency Converter</h1>
   <h2 class="currencies-heading">Exchange rates:</h2>
   <ul class="currencies-list">
-    <li class="currencies-list__item">$CURRENCY$ to $CURRENCY$ : NaN</li>
-    <li class="currencies-list__item">$CURRENCY$ to $CURRENCY$ : NaN</li>
+    <!-- <li class="currencies-list__item">$CURRENCY$ to $CURRENCY$ : NaN</li>
+    <li class="currencies-list__item">$CURRENCY$ to $CURRENCY$ : NaN</li> -->
+
+    <li class="currencies-list__item" *ngFor="let currency of currencies">
+      {{ currency }}
+    </li>
   </ul>
 </header>
