@@ -20,22 +20,32 @@ export class AppComponent {
   baseCurrency: string = '';
   targetCurrency: string = '';
 
-  currencies: string[] = ['usd', 'eur', 'gbp'];
-  exchangeRates: ExchangeRate = {
-    usd: 1,
-    eur: 0.9,
-    gbp: 0.8,
-  };
+  currencies: string[] = ['UAH', 'USD', 'EUR'];
+  exchangeRates: ExchangeRate | undefined;
 
   convert() {
+    console.log(this.exchangeRates);
+
+    if (!this.exchangeRates) return;
     const baseRate = this.exchangeRates[this.baseCurrency];
     const targetRate = this.exchangeRates[this.targetCurrency];
     this.targetAmount = (this.baseAmount / baseRate) * targetRate;
   }
 
   reverseConvert() {
+    if (!this.exchangeRates) return;
     const baseRate = this.exchangeRates[this.baseCurrency];
     const targetRate = this.exchangeRates[this.targetCurrency];
     this.baseAmount = (this.targetAmount / targetRate) * baseRate;
+  }
+
+  ngOnInit() {
+    (async () => {
+      const currenciesData = await fetch(
+        'https://api.exchangerate-api.com/v4/latest/UAH'
+      );
+      const currenciesDataJson = await currenciesData.json();
+      this.exchangeRates = currenciesDataJson.rates;
+    })();
   }
 }
