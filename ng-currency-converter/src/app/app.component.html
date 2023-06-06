@@ -1,4 +1,7 @@
-<app-header [currencies]="currencies" [rates]="exchangeRates"></app-header>
+<app-header
+  [currencies]="headerCurrencies"
+  [rates]="exchangeRates"
+></app-header>
 <main class="main">
   <h2 class="converter-heading">Converter:</h2>
   <div class="converter-controls converter-controls--1">
@@ -8,7 +11,7 @@
       [(ngModel)]="baseCurrency"
       (ngModelChange)="convert()"
     >
-      <option *ngFor="let currency of currencies" [value]="currency">
+      <option *ngFor="let currency of baseCurrencies" [value]="currency">
         {{ currency }}
       </option>
     </select>
@@ -25,7 +28,7 @@
       [(ngModel)]="targetCurrency"
       (ngModelChange)="reverseConvert()"
     >
-      <option *ngFor="let currency of currencies" [value]="currency">
+      <option *ngFor="let currency of targetCurrencies" [value]="currency">
         {{ currency }}
       </option>
     </select>
