@@ -1,9 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
-// import { HeaderComponent } from './header/header.component';
+import { Component } from '@angular/core';
 
 interface ExchangeRate {
   [key: string]: number;
@@ -20,12 +15,10 @@ export class AppComponent {
   baseCurrency: string = '';
   targetCurrency: string = '';
 
-  currencies: string[] = ['UAH', 'USD', 'EUR'];
+  currencies: string[] = ['UAH', 'USD', 'EUR', 'GBP'];
   exchangeRates: ExchangeRate | undefined;
 
   convert() {
-    console.log(this.exchangeRates);
-
     if (!this.exchangeRates) return;
     const baseRate = this.exchangeRates[this.baseCurrency];
     const targetRate = this.exchangeRates[this.targetCurrency];
