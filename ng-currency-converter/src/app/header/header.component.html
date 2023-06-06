@@ -3,7 +3,7 @@
   <h2 class="currencies-heading">Exchange rates:</h2>
   <ul class="currencies-list">
     <li class="currencies-list__item" *ngFor="let currency of currencies">
-      {{ currency }} to UAH : {{ 1 / rates[currency] }}
+      <p>{{ currency }} to UAH : {{ (1 / rates[currency]).toFixed(2) }}</p>
     </li>
   </ul>
 </header>
