@@ -2,34 +2,32 @@
 <main class="main">
   <h2 class="converter-heading">Converter:</h2>
   <div class="converter-controls converter-controls--1">
-    <input
-      type="number"
-      class="converter-controls__input"
-      (ngModelChange)="logger()"
-      [(ngModel)]="input1"
-    />
-    <select class="converter-options">
-      <option class="converter-options__currency">$CURRENCY$</option>
-      <option class="converter-options__currency">$CURRENCY$</option>
-      <option class="converter-options__currency">$CURRENCY$</option>
-
-      <!-- <option *ngFor="let currency of currencies">
+    <input type="number" [(ngModel)]="baseAmount" (ngModelChange)="convert()" />
+    <select
+      class="converter-option"
+      [(ngModel)]="baseCurrency"
+      (ngModelChange)="convert()"
+    >
+      <option *ngFor="let currency of currencies" [value]="currency">
         {{ currency }}
-      </option> -->
+      </option>
     </select>
   </div>
 
-  <div class="converter-controls converter-controls--2">
+  <div class="converter-controls converter-controls--1">
     <input
       type="number"
-      class="converter-controls__input"
-      (ngModelChange)="logger()"
-      [(ngModel)]="input2"
+      [(ngModel)]="targetAmount"
+      (ngModelChange)="reverseConvert()"
     />
-    <select class="converter-options">
-      <option class="converter-options__currency">$CURRENCY$</option>
-      <option class="converter-options__currency">$CURRENCY$</option>
-      <option class="converter-options__currency">$CURRENCY$</option>
+    <select
+      class="converter-option"
+      [(ngModel)]="targetCurrency"
+      (ngModelChange)="reverseConvert()"
+    >
+      <option *ngFor="let currency of currencies" [value]="currency">
+        {{ currency }}
+      </option>
     </select>
   </div>
 </main>

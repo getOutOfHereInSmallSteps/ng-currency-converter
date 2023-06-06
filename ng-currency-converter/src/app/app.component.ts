@@ -1,6 +1,13 @@
-import { Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { Component, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 // import { HeaderComponent } from './header/header.component';
+
+interface ExchangeRate {
+  [key: string]: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -8,25 +15,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Currency Calculator';
+  baseAmount: number = 0;
+  targetAmount: number = 0;
+  baseCurrency: string = '';
+  targetCurrency: string = '';
 
-  currencies = ['usd', 'eur', 'uah'];
-
-  rates = {
-    usd: 0.5,
-    eur: 0.2,
-    uah: 1,
+  currencies: string[] = ['usd', 'eur', 'gbp'];
+  exchangeRates: ExchangeRate = {
+    usd: 1,
+    eur: 0.9,
+    gbp: 0.8,
   };
 
-  input1 = '';
-  input2 = '';
-
-  logger() {
-    console.log(this.input1);
-    console.log(this.input2);
+  convert() {
+    const baseRate = this.exchangeRates[this.baseCurrency];
+    const targetRate = this.exchangeRates[this.targetCurrency];
+    this.targetAmount = (this.baseAmount / baseRate) * targetRate;
   }
 
-  convertCurrency() {
-    const baseRate = this.rates;
+  reverseConvert() {
+    const baseRate = this.exchangeRates[this.baseCurrency];
+    const targetRate = this.exchangeRates[this.targetCurrency];
+    this.baseAmount = (this.targetAmount / targetRate) * baseRate;
   }
 }
